@@ -1,0 +1,200 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Tpad\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-29 17:50-0500\n"
+"PO-Revision-Date: 2013-01-29 17:56-0500\n"
+"Last-Translator: Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SearchPath-0: ../src\n"
+
+#: ../src/include.h:7
+msgid "Choose Font"
+msgstr "Choose Font"
+
+#: ../src/include.h:8
+msgid "Show Line Number?"
+msgstr "Show Line Number?"
+
+#: ../src/include.h:9
+msgid "Show Language?"
+msgstr "Show Language?"
+
+#: ../src/include.h:10
+msgid "Use Auto Indent?"
+msgstr "Use Auto Indent?"
+
+#: ../src/include.h:11
+msgid "Show Spelling Errors?"
+msgstr "Show Spelling Errors?"
+
+#: ../src/include.h:12
+msgid "Display UI Settings"
+msgstr "Display UI Settings"
+
+#: ../src/include.h:13
+msgid "Default Window Width"
+msgstr "Default Window Width"
+
+#: ../src/include.h:14
+msgid "Default Window Height"
+msgstr "Default Window Height"
+
+#: ../src/include.h:15
+msgid "Set Maximum Undo Level (0 For Unlimited) :"
+msgstr "Set Maximum Undo Level (0 For Unlimited) :"
+
+#: ../src/include.h:16
+msgid "Find / Find & Replace Text"
+msgstr "Find / Find & Replace Text"
+
+#: ../src/include.h:17
+msgid "Search Text For:"
+msgstr "Search Text For:"
+
+#: ../src/include.h:18
+msgid "Replace Text With:"
+msgstr "Replace Text With:"
+
+#: ../src/include.h:19
+msgid "Find"
+msgstr "Find"
+
+#: ../src/include.h:20
+msgid "Replace"
+msgstr "Replace"
+
+#: ../src/include.h:21
+msgid "Find & Replace"
+msgstr "Find & Replace"
+
+#: ../src/include.h:22
+msgid "en_US"
+msgstr "en_US"
+
+#: ../src/include.h:23
+msgid "That simple, fast, and user friendly text editor you love."
+msgstr "That simple, fast, and user friendly text editor you love."
+
+#~ msgid "UTF-8"
+#~ msgstr "UTF-8"
+
+#~ msgid "/.tpad.cfg"
+#~ msgstr "/.tpad.cfg"
+
+#~ msgid "Tpad"
+#~ msgstr "Tpad"
+
+#~ msgid "_File"
+#~ msgstr "_File"
+
+#~ msgid "_Edit"
+#~ msgstr "_Edit"
+
+#~ msgid "_Settings"
+#~ msgstr "_Settings"
+
+#~ msgid "_Help"
+#~ msgstr "_Help"
+
+#~ msgid "activate"
+#~ msgstr "activate"
+
+#~ msgid "DejaVu Sans Mono 12"
+#~ msgstr "DejaVu Sans Mono 12"
+
+#~ msgid "response"
+#~ msgstr "response"
+
+#~ msgid "This is an info bar with message type GTK_MESSAGE_INFO"
+#~ msgstr "This is an info bar with message type GTK_MESSAGE_INFO"
+
+#~ msgid "delete_event"
+#~ msgstr "delete_event"
+
+#~ msgid "clicked"
+#~ msgstr "clicked"
+
+#~ msgid "tpad(v.%s): %s\n"
+#~ msgstr "tpad(v.%s): %s\n"
+
+#~ msgid "destroy"
+#~ msgstr "destroy"
+
+#~ msgid ""
+#~ "Text was modified!\n"
+#~ "Save it?"
+#~ msgstr ""
+#~ "Text was modified!\n"
+#~ "Save it?"
+
+#~ msgid "/bin/sh"
+#~ msgstr "/bin/sh"
+
+#~ msgid "sh"
+#~ msgstr "sh"
+
+#~ msgid "-c"
+#~ msgstr "-c"
+
+#~ msgid "Untitled"
+#~ msgstr "Untitled"
+
+#~ msgid "Open File"
+#~ msgstr "Open File"
+
+#~ msgid " "
+#~ msgstr " "
+
+#~ msgid "Save File"
+#~ msgstr "Save File"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid ""
+#~ "Copyright © Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>"
+#~ msgstr ""
+#~ "Copyright © Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>"
+
+#~ msgid "https://gnaservicesinc.com"
+#~ msgstr "https://gnaservicesinc.com"
+
+#~ msgid "GNA Homepage"
+#~ msgstr "GNA Homepage"
+
+#~ msgid "User_Pref"
+#~ msgstr "User_Pref"
+
+#~ msgid "LineNumbers"
+#~ msgstr "LineNumbers"
+
+#~ msgid "Spelling"
+#~ msgstr "Spelling"
+
+#~ msgid "ShowLang"
+#~ msgstr "ShowLang"
+
+#~ msgid "Auto_Tab"
+#~ msgstr "Auto_Tab"
+
+#~ msgid "User_Interface_Settings"
+#~ msgstr "User_Interface_Settings"
+
+#~ msgid "Default_Window_Width"
+#~ msgstr "Default_Window_Width"
+
+#~ msgid "Default_Window_Height"
+#~ msgstr "Default_Window_Height"
+
+#~ msgid "Undo_Level"
+#~ msgstr "Undo_Level"

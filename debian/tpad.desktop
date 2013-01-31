@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=tpad
+GenericName=tpad Text Editor
+Comment=Edit text files
+TryExec=tpad
+Exec=tpad %U
+Terminal=false
+Type=Application
+Icon=tpad
+Categories=Utility;TextEditor;
+StartupNotify=true
+MimeType=text/plain;
+Name[en_US]=tpad

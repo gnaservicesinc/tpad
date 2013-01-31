@@ -1,0 +1,9 @@
+../src/functions.h
+../src/Makefile.am
+../src/store_settings.c
+../src/user_settings.c
+../src/include.h
+../src/store_settings.h
+../src/user_settings.h
+../src/main.c
+../src/static.h

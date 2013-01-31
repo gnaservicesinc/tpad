@@ -1,0 +1,15 @@
+Source: tpad
+Section: editors
+Priority: optional
+Maintainer: Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
+Build-Depends: cdbs, debhelper (>= 8.0.0), autotools-dev, libgtkspell-3-0, libgtksourceview-3.0-dev, libgtkspell-3-dev, libgtk-3-dev, libgdk-pixbuf2.0-dev, libgtksourceview-3.0-0, libglib2.0-dev, libconfig-dev (>=1.4.9), libatk1.0-dev, libgucharmap-2-90-dev, gucharmap, libpixman-1-dev, libpng12-dev, libpng12-0, libpixman-1-0, libcairo-gobject2
+Standards-Version: 3.9.4
+#Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/tpad.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/tpad.git;a=summary
+
+Package: tpad
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libgtkspell-3-0, libconfig9
+Description: Simple text editor
+ A simple, easy to use, fast text editor.
