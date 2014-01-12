@@ -1,10 +1,10 @@
 ## Process this file with automake to produce Makefile.in
 ## Created by Anjuta
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+SUBDIRS = src po icon man script debian m4
 
-SUBDIRS = src po icons man
-
-tpaddocdir = ${prefix}/doc/tpad
-doc_DATA = \
+tpaddocdir = ${prefix}/share/doc/tpad
+tpaddoc_DATA = \
 	README\
 	COPYING\
 	AUTHORS\
@@ -18,7 +18,14 @@ INTLTOOL_FILES = intltool-extract.in \
 	intltool-update.in
 
 EXTRA_DIST = $(tpaddoc_DATA) \
-	$(INTLTOOL_FILES)
+	$(INTLTOOL_FILES) \
+	po/de.po \
+	po/en.po \
+	po/en_GB.po \
+	po/es.po \
+	po/fr.po \
+	po/template.pot \
+	po/tr.po
 
 DISTCLEANFILES = intltool-extract \
 	intltool-merge \

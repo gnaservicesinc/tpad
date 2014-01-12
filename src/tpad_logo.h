@@ -1,3 +1,5 @@
+#ifndef TPAD_LOGO_H
+#define TPAD_LOGO_H
 /* GdkPixbuf RGBA C-Source image dump */
 
 #ifdef __SUNPRO_C
@@ -922,3 +924,4 @@ static const guint8 tpad_inline[] =
   "\377\377\0\377\377\377\0\377\377\377\0\377\377\377\0\15s3\24\25\200@"
   "0W\204@\217\257\200^\202\340\205p\31\377\377\377\0\377\377\377\0\377"
   "\377\377\0"};
+#endif
