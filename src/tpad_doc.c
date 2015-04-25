@@ -1,6 +1,6 @@
 /********************************************************************************* 
  *     COPYRIGHT NOTICE:
- *     Copyright © 2013 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
+ *     Copyright © 2014 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
  *     All Rights Reserved.
  *
  *   This file, tpad_doc.c , is part of tpad.
@@ -21,6 +21,10 @@
 #include "tpad_headers.h"
 extern GtkSourceBuffer *mBuff;
 extern gchar *content;
+extern 	gchar* unknownContents;
+
+// Get text buffer contents -> ensure / convert contents to UTF 8 -> modify contents
+// -> ensure / convert modifyed contents to UTF 8 -> modify / set text buffer -> place_cursor
 
 void low_caps_document(){
 	mod_doc(_METHOD_DOWNCAP);
@@ -34,22 +38,43 @@ void rev_document(){
 	mod_doc(_METHOD_REVERSE);
 }
 
-void mod_doc(int method){
+void hex_document(){
+	mod_doc(_METHOD_HEX);
+}
 
+gint mod_doc(int method){
+	//gsize length;
+	gchar* unknownContents;
+	unknownContents=NULL;
+	int hex;
+	GError *error = NULL;	
 	if (method >= 0 && method <= _METHOD_MAX){
 		GtkTextMark *  mark_start = (GtkTextMark *) gtk_text_mark_new ("mStart",TRUE);
 		GtkTextMark *  mark_end = (GtkTextMark *) gtk_text_mark_new ("mEnd",FALSE);
 	GtkTextIter start,end;
 	gchar *RevBuff;
-	if(gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER(mBuff))){
+	if(gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER(mBuff)))
+		{
 		if(gtk_text_buffer_get_selection_bounds( GTK_TEXT_BUFFER(mBuff),&start,&end))
 			{
 			gtk_text_buffer_begin_user_action(GTK_TEXT_BUFFER(mBuff));	
 			RevBuff=NULL;
+			
+			gchar* cUnknown = (gchar*) g_strdup(gtk_text_buffer_get_text(GTK_TEXT_BUFFER(mBuff),&start,&end,FALSE));
+				
+
+			gchar* temp_buffer = (gchar*) g_strdup(g_convert(cUnknown,(gsize) strlen (cUnknown), "UTF-8", g_get_codeset(),NULL, NULL, &error));
+		   if (error != NULL)
+       		{
+				gerror_warn(error->message,_ERROR_STR_REV,TRUE,TRUE);
+   				g_error_free (error);
+				return(-1);
+       		}
+				
 			switch(method)
 			{
-			case _METHOD_REVERSE: 	
-				RevBuff=g_strdup(g_strreverse(gtk_text_buffer_get_text(GTK_TEXT_BUFFER(mBuff),&start,&end,FALSE)));
+			case _METHOD_REVERSE: 
+					RevBuff = g_strdup( g_strreverse(temp_buffer) );
 			break;
 			
 			case _METHOD_UPCAP:
@@ -60,15 +85,33 @@ void mod_doc(int method){
 				RevBuff=g_ascii_strdown (gtk_text_buffer_get_text(GTK_TEXT_BUFFER(mBuff),&start,&end,FALSE),-1);
 			break;
 
+			case _METHOD_HEX:
+			
+			hex=0;
+			
+			RevBuff = g_strdup(gtk_text_buffer_get_text(GTK_TEXT_BUFFER(mBuff),&start,&end,FALSE));
+			gchar* ptrTemp = (gchar*) g_strdup( (gchar*) RevBuff );
+
+			break;
 			default:
 				gerror_warn(_ERROR_MOD_DOC_METHOD_VAL,(gchar*)__func__,TRUE,FALSE);
 			break;
 			
 			}
+
+				if(RevBuff == NULL) return(2);
+				
+			content=g_strdup(g_convert(RevBuff,(gsize) strlen (RevBuff), "UTF-8", g_get_codeset(),NULL, NULL, &error));
+		   if (error != NULL)
+       		{
+				gerror_warn(error->message,_ERROR_STR_REV,TRUE,TRUE);
+   				g_error_free (error);
+				return(-1);
+       		}
 			gtk_text_buffer_add_mark  (GTK_TEXT_BUFFER(mBuff),mark_start,&start);
 			gtk_text_buffer_add_mark  (GTK_TEXT_BUFFER(mBuff),mark_end,&end);
 			gtk_text_buffer_delete (GTK_TEXT_BUFFER(mBuff), &start, &end);
-	 		gtk_text_buffer_insert (GTK_TEXT_BUFFER(mBuff), &start, g_strdup(RevBuff), -1);
+	 		gtk_text_buffer_insert (GTK_TEXT_BUFFER(mBuff), &start, g_strdup(content), -1);
 			gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER(mBuff));
 			gtk_text_buffer_place_cursor(GTK_TEXT_BUFFER(mBuff),&start);		
 					GtkTextIter mstart, mend;
@@ -80,25 +123,32 @@ void mod_doc(int method){
 		}
 	}
 	else {
-	// Get buffer, reverse contents, and copy them into content.
+	
 	gtk_text_buffer_begin_user_action(GTK_TEXT_BUFFER(mBuff));
-		
 	gtk_text_buffer_get_bounds( GTK_TEXT_BUFFER(mBuff),&start,&end);
-	//gtk_text_buffer_add_mark  (GTK_TEXT_BUFFER(mBuff),mark_start,&start);
-    //gtk_text_buffer_add_mark  (GTK_TEXT_BUFFER(mBuff),mark_end,&end);
-	content=NULL;
+		gchar* cUnknown = (gchar*) g_strdup(gtk_text_buffer_get_text(GTK_TEXT_BUFFER(mBuff),&start,&end,FALSE));                                     
+		gchar* temp_buffer = (gchar*) g_strdup(g_convert(cUnknown,(gsize) strlen (cUnknown), "UTF-8", g_get_codeset(),NULL, NULL, &error));
+		   if (error != NULL)
+       		{
+				gerror_warn(error->message,_ERROR_STR_REV,TRUE,TRUE);
+   				g_error_free (error);
+				return(-1);
+       		}
+		
 			switch(method)
 			{
 			case _METHOD_REVERSE: 	
-				content=g_strdup(g_strreverse(gtk_text_buffer_get_text(GTK_TEXT_BUFFER(mBuff),&start,&end,FALSE)));
+
+					
+				unknownContents=g_strdup(g_strreverse(temp_buffer));
 			break;
 			
 			case _METHOD_UPCAP:
-				content=g_ascii_strup(gtk_text_buffer_get_text(GTK_TEXT_BUFFER(mBuff),&start,&end,FALSE),-1);
+				unknownContents=g_ascii_strup(temp_buffer,-1);
 			break;
 
 			case _METHOD_DOWNCAP:
-				content=g_ascii_strdown (gtk_text_buffer_get_text(GTK_TEXT_BUFFER(mBuff),&start,&end,FALSE),-1);
+				unknownContents=g_ascii_strdown (temp_buffer,-1);
 			break;
 
 			default:
@@ -106,10 +156,18 @@ void mod_doc(int method){
 			break;
 			
 			}
-	
 
-	// Flush Buffer
-   //     gtk_text_buffer_set_text(GTK_TEXT_BUFFER(mBuff),"",-1);
+		    if(unknownContents == NULL) return(2);
+
+			content=NULL;
+			content=g_strdup(g_convert(unknownContents, strlen(unknownContents), "UTF-8", g_get_codeset(),NULL, NULL, &error));
+
+		   if (error != NULL)
+       		{
+				gerror_warn(error->message,_ERROR_STR_REV,TRUE,TRUE);
+   				g_error_free (error);
+				return(-1);
+       		}
 
 	// Set Buffer
 		
@@ -120,13 +178,7 @@ void mod_doc(int method){
         GtkTextIter iter;
         gtk_text_buffer_get_start_iter(GTK_TEXT_BUFFER(mBuff),&iter);
         gtk_text_buffer_place_cursor(GTK_TEXT_BUFFER(mBuff),&iter);
-		/*
-		gtk_text_buffer_get_iter_at_mark(GTK_TEXT_BUFFER(mBuff),&start,mark_start);
-		gtk_text_buffer_get_iter_at_mark(GTK_TEXT_BUFFER(mBuff),&end,mark_end);
-		gtk_text_buffer_select_range (GTK_TEXT_BUFFER(mBuff), &start, &end);
-		gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER(mBuff), mark_start);
-		gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER(mBuff), mark_end);
-		*/
+		return(1);
 	}
 	}
 }

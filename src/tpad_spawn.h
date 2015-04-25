@@ -48,7 +48,7 @@
 #include <libintl.h>
 #include <glib/gi18n.h>
 #include <pthread.h>
-
+void runn();
 void set_path_self_cleanup();
 void set_path_self(gchar * c_path);
 void *tpad_spawn_command(void *ptr);

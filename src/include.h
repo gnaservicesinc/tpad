@@ -21,6 +21,7 @@
 //#ifndef INCLUDE_H
 //#define INCLUDE_H
 /////////////////////////////////////////////
+
 #include <stdio.h>
 #include <unistd.h>
 #include <gtk/gtk.h>
@@ -65,11 +66,87 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <libgen.h> 
+#include <errno.h>
+#include <fenv.h>
+#include <float.h>
+#include <inttypes.h>
+#include <unistd.h>
+#include <memory.h>
+#include <dirent.h>
+#include <pwd.h>
+#include <dlfcn.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <sys/time.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/dir.h>
+#include <sys/syscall.h>
+#include <config.h>
+#include <gtk/gtk.h>
+#include <glib/gi18n.h>
+#include <string.h>
+#include <inttypes.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <signal.h>
+#include <time.h>
+#include <wchar.h>
+#include <wctype.h>
+#include <iso646.h>
+#include <ctype.h>
+#include <limits.h>
+#include <locale.h>
+#include <setjmp.h>
+#include <stdarg.h>
+#include <stddef.h>
+#include <assert.h>
+#include <errno.h>
+#include <fenv.h>
+#include <float.h>
+#include <inttypes.h>
+#include <unistd.h>
+#include <memory.h>
+#include <dirent.h>
+#include <pwd.h>
+#include <dlfcn.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <sys/time.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/dir.h>
+#include <sys/syscall.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <signal.h>
+#include <time.h>
+#include <wchar.h>
+#include <wctype.h>
+#include <iso646.h>
+#include <ctype.h>
+#include <limits.h>
+#include <locale.h>
+#include <setjmp.h>
+#include <stdarg.h>
+#include <stddef.h>
+#include <assert.h>
+#include <uuid/uuid.h>
 #ifdef HAVE_LIBMAGIC
 #include <magic.h>
 #endif
 #ifdef HAVE_LIBUNITY
 //	#include <unity.h>
 #endif
+
+
 /////////////////////////////////////////////
 //#endif

@@ -21,10 +21,54 @@
 #include "tpad_headers.h"
 
 int str_size(char* string){
+/*
  mbstate_t t;
  char *scopy = string;
  memset (&t, '\0', sizeof (t));
  return(mbsrtowcs (NULL,(const char **) &scopy, strlen (scopy), &t));
+*/
+return(strlen(string));
+}
+void clear_uchar_array(unsigned char* first, ...){
+  /*
+	Usage: clear_char_array(anArray,..., NULL);
+	--> ALWAYS END LIST WITH NULL
+	--> Pass asmany arrays as you like, all will be cleared.
+	--> REQUIRES #include <stdarg.h> 	
+  */
+  unsigned char* str;
+  va_list vl;
+  str=first;
+  va_start(vl,first);
+
+  do {
+    if(str) memset(&str[0], 0, sizeof(str));
+
+    str=(unsigned char*) va_arg(vl,unsigned char*);
+  } while (str!=NULL);
+
+  va_end(vl);
+}
+
+void clear_char_array(gchar first[], ...){
+  /*
+	Usage: clear_char_array(anArray,..., NULL);
+	--> ALWAYS END LIST WITH NULL
+	--> Pass asmany arrays as you like, all will be cleared.
+	--> REQUIRES #include <stdarg.h> 	
+  */
+  gchar* str;
+  va_list vl;
+  str=first;
+  va_start(vl,first);
+
+  do {
+    if(str) memset(&str[0], 0, sizeof(str));
+
+    str=(gchar*) va_arg(vl,gchar*);
+  } while (str!=NULL);
+
+  va_end(vl);
 }
 
 gboolean is_separator (gchar cChar){

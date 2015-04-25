@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl Created by Anjuta application wizard.
 
-AC_INIT(tpad, 5.5.0.5,https://bugs.launchpad.net/tpad-project/+filebug)
+AC_INIT(tpad, 5.8.5.1,https://bugs.launchpad.net/tpad-project/+filebug)
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
 
@@ -195,7 +195,7 @@ LT_INIT
 
 
 
-PKG_CHECK_MODULES(TPAD, [ gucharmap-2.90  pixman-1 gtk+-x11-3.0 unity gdk-pixbuf-2.0 gtksourceview-3.0 gtkspell3-3.0 pango gdk-3.0 pangocairo cairo-gobject glib-2.0 cairo freetype2 atk pthread-stubs gdk-x11-3.0 gtk+-3.0 gio-2.0 ])
+PKG_CHECK_MODULES(TPAD, [ gucharmap-2.90  pixman-1 gtk+-x11-3.0 unity gdk-pixbuf-2.0 gtksourceview-3.0 uuid gtkspell3-3.0 pango gdk-3.0 pangocairo cairo-gobject glib-2.0 cairo freetype2 atk pthread-stubs gdk-x11-3.0 gtk+-3.0 gio-2.0 ])
 
 
 AC_CONFIG_FILES([Makefile

@@ -1,5 +1,6 @@
-tpad (5.5.0.5-1) raring; urgency=low
+tpad (5.8.5.1-1) trusty; urgency=critical
 
-  * Fixed bug preventing build
+  * Misc bugs fixes 
+  * Tweaked debian control file
 
- -- Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>  Sun, 12 Jan 2014 03:04:35 -0500
+ -- Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>  Fri, 27 Feb 2015 15:24:34 -0500

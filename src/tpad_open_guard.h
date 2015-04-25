@@ -18,4 +18,5 @@ int tpad_open_guard_check_ok();
 void tpad_open_guard_attack(gchar* fp);
 void tpad_open_guard_make_temp();
 void tpad_open_guard_remove_temp();
+unsigned int tpad_get_file_size(char* filepath);
 #endif

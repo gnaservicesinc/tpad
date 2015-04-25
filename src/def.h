@@ -1,6 +1,6 @@
 /********************************************************************************* 
  *     COPYRIGHT NOTICE:
- *     Copyright © 2013 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
+ *     Copyright © 2013, 2014 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
  *     All Rights Reserved.
  *
  *   This file, def.h , is part of tpad.
@@ -18,6 +18,18 @@
  *  You should have received a copy of the GNU General Public License
  *  along with tpad.  If not, see <http://www.gnu.org/licenses/>.
  ********************************************************************************/
+////////////////////////////////////////////////////////////////////////
+// 		DEF FILE -- DIRECTIVES
+//		TABLE OF CONTENTS
+//			SECTION ONE - LIB C MACRO DIRECTIVES
+//			SECTION TWO - #DEFINE VALUES DIRECTIVES
+//			SECTION THREE - GETTEXT DIRECTIVES  
+////////////////////////////////////////////////////////////////////////
+//	BEGIN SECTION ONE.   LIB C MACRO DIRECTIVES     	
+////////////////////////////////////////////////////////////////////////
+// Please, do not edit this section unless
+// you know what you are doing, why you are doing it. :)
+// Also, please grep the entire source for usage. 
 ////////////////////////////////////////////////////////////////////////
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE 1
@@ -37,6 +49,16 @@
 #ifndef __USE_FORTIFY_LEVEL
 #define __USE_FORTIFY_LEVEL 2
 #endif
+#if __STDC_VERSION__ < 199901L
+	# if __GNUC__ >= 2
+		#  define __func__ __FUNCTION__
+     	# else
+		#  define __func__ "<unknown>"
+     	# endif
+#endif
+////////////////////////////////////////////////////////////////////////
+//	END OF SECTION ONE.   	
+////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 #ifndef  TPAD_STACKS_MAX
 #define _TPAD_STACKS_MAX 9999
@@ -56,22 +78,6 @@
 #ifndef _DESKTOP_FILE_NAME
 #define _DESKTOP_FILE_NAME "tpad.desktop"
 #endif
-#ifndef _FILE_IS_A_DIRECTORY
-#define _FILE_IS_A_DIRECTORY 1
-#endif
-#ifndef  _FILE_IS_A_LINK
-#define _FILE_IS_A_LINK 2
-#endif
-#ifndef _ERROR_FILE_GET_TYPE 
-#define _ERROR_FILE_GET_TYPE 3
-#endif
-#ifndef _FILE_IS_A_REGRULAR_FILE
-#define _FILE_IS_A_REGRULAR_FILE 4
-#endif
-
-#ifndef CONFIG_FILE_SUFFIX
-#define CONFIG_FILE_SUFFIX "/.tpad.cfg"
-#endif
 #ifndef WIDTH_MAX
 #define WIDTH_MAX 3920
 #endif
@@ -87,16 +93,43 @@
 #ifndef _DEFAULT_WINDOW_WIDTH
 #define _DEFAULT_WINDOW_WIDTH 800
 #endif
-
-////////////////////////////////////////
-#if __STDC_VERSION__ < 199901L
-	# if __GNUC__ >= 2
-		#  define __func__ __FUNCTION__
-     	# else
-		#  define __func__ "<unknown>"
-     	# endif
+#ifndef WATCH_PROC_SLEEP_LENGTH
+#define WATCH_PROC_SLEEP_LENGTH 1
 #endif
-////////////////////////////////////////
+#ifndef WATCH_STALL_TIME
+#define WATCH_STALL_TIME 2
+#endif
+#ifndef _DISABLE_FILE_WRAPPING_DEFAULT_STATE
+#define _DISABLE_FILE_WRAPPING_DEFAULT_STATE 0
+#endif
+#ifndef CONFIG_FILE_SUFFIX
+#define CONFIG_FILE_SUFFIX "/.tpad.cfg"
+#endif
+////////////////////////////////////////////////////////////////////////
+//   DO NOT EDIT BELOW THIS LINE    //
+//___________________________________
+// EDITING ALLOWED ABOVE THIS LINE //
+#ifndef _FILE_IS_A_DIRECTORY
+#define _FILE_IS_A_DIRECTORY 1
+#endif
+#ifndef  _FILE_IS_A_LINK
+#define _FILE_IS_A_LINK 2
+#endif
+#ifndef _ERROR_FILE_GET_TYPE 
+#define _ERROR_FILE_GET_TYPE 3
+#endif
+#ifndef _FILE_IS_A_REGRULAR_FILE
+#define _FILE_IS_A_REGRULAR_FILE 4
+#endif
+// EDITING ALLOWED BELOW THIS LINE //
+//___________________________________
+// DO NOT EDIT ABOVE THIS LINE //
+////////////////////////////////////////////////////////////////////////
+//	END OF SECTION TWO.        	
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+//	BEGIN SECTION THREE.        	
+////////////////////////////////////////////////////////////////////////
 #ifndef _FONT
 #define _FONT gettext("Choose Font")
 #endif
@@ -142,12 +175,20 @@
 #ifndef _FIND
 #define _FIND gettext("Find")
 #endif
-
+#ifndef _HELP_MENU
+#define _HELP_MENU gettext("Help")
+#endif
+#ifndef _ABOUT_MENU
+#define _ABOUT_MENU gettext("About")
+#endif
 #ifndef _REPLACE
 #define _REPLACE gettext("Replace")
 #endif
 #ifndef _SAVE_CHANGES
 #define _SAVE_CHANGES gettext("Text was modified!\nSave it?")
+#endif
+#ifndef _ON_DISK_CHANGES
+#define _ON_DISK_CHANGES gettext("On disk content of file was modified while the file was open and saving your changes may overwrite outside changes made to the file. You may want to save the file as and use a unique file name.\nDoing do may help prevent you from inadvertently overwriting work\n\tSave as now?\n(REMEMBER TO CHANGE THE FILE NAME TO SOMETHING UNIQUE)\n" )
 #endif
 #ifndef _FIND_AND_REPLACE
 #define _FIND_AND_REPLACE gettext("Find & Replace")
@@ -175,6 +216,51 @@
 #endif
 #ifndef _CONVERT_FAILED
 #define _CONVERT_FAILED gettext("Conversion to UTF-8 FAILED! Is this a text document?")
+#endif
+#ifndef _FILE_MENU
+#define _FILE_MENU gettext("_File")
+#endif
+#ifndef _NEW_FILE_MNEMONIC
+#define _NEW_FILE_MNEMONIC gettext("_New File")
+#endif
+#ifndef _SAVE_FILE_MNEMONIC
+#define _SAVE_FILE_MNEMONIC gettext("_Save File")
+#endif
+#ifndef _OPEN_FILE_MNEMONIC
+#define _OPEN_FILE_MNEMONIC gettext("_Open File")
+#endif
+#ifndef _SAVE_FILE_AS_MNEMONIC
+#define _SAVE_FILE_AS_MNEMONIC gettext("S_ave File As...")
+#endif
+#ifndef _QUIT_MNEMONIC
+#define _QUIT_MNEMONIC gettext("_Quit")
+#endif
+#ifndef _EDIT_MENU
+#define _EDIT_MENU gettext("Edit")
+#endif
+#ifndef _FIND_MNEMONIC
+#define _FIND_MNEMONIC gettext("F_ind")
+#endif
+#ifndef _REPLACE_MNEMONIC
+#define _REPLACE_MNEMONIC gettext("Re_place")
+#endif
+#ifndef _UNDO_MNEMONIC
+#define _UNDO_MNEMONIC gettext("_Undo")
+#endif
+#ifndef _REDO_MNEMONIC
+#define _REDO_MNEMONIC gettext("_Redo")
+#endif
+#ifndef _SETTINGS_MENU
+#define _SETTINGS_MENU gettext("Settings")
+#endif
+#ifndef _SELECT_FONT_MNEMONIC
+#define _SELECT_FONT_MNEMONIC gettext("Se_lect Font")
+#endif
+#ifndef _PREF_MNEMONIC
+#define _PREF_MNEMONIC gettext("_Preferences")
+#endif
+#ifndef _CCFP_MNEMONIC
+#define _CCFP_MNEMONIC gettext("Copy F_ile Path")
 #endif
 #ifndef _FAILED_SAVE_FILE
 #define _FAILED_SAVE_FILE gettext("WARNING: Saving File Failed! Unable to write to file: ")
@@ -218,9 +304,6 @@
 #ifndef _ERROR_TOO_SMALL
 #define _ERROR_TOO_SMALL gettext("Error! The default window size must have a height of 50 or more and a width of 25 or more.")
 #endif
-#ifndef _QUANTITY_OF_STACKS_HEADING
-#define _QUANTITY_OF_STACKS_HEADING gettext("Quantity of Stacks:")
-#endif
 #ifndef _MAKE_LOWERCASE
 #define _MAKE_LOWERCASE gettext("To lower case")
 #endif
@@ -242,5 +325,75 @@
 #ifndef _ERROR_MAGIC_DB
 #define _ERROR_MAGIC_DB gettext("Uh-oh! I can not load the magic database\nSkipping!")
 #endif
-
-////////////////////////////////////////
+#ifndef _ERROR_STR_REV
+#define _ERROR_STR_REV gettext("Document text changes have failed!\n\tcoult not convert the new content to UTF-8.\n")
+#endif
+#ifndef _QUIT_TOOLBAR
+#define _QUIT_TOOLBAR gettext("Quit")
+#endif
+#ifndef _REDO_TOOLBAR
+#define _REDO_TOOLBAR gettext("Redo")
+#endif
+#ifndef _UNDO_TOOLBAR
+#define _UNDO_TOOLBAR gettext("Undo")
+#endif
+#ifndef _SAVE_AS_TOOLBAR
+#define _SAVE_AS_TOOLBAR gettext("Save As...")
+#endif
+#ifndef _SAVE_TOOLBAR
+#define _SAVE_TOOLBAR gettext("Save")
+#endif
+#ifndef _OPEN_TOOLBAR
+#define _OPEN_TOOLBAR gettext("Open")
+#endif
+#ifndef _NEW_TOOLBAR
+#define _NEW_TOOLBAR gettext("New")
+#endif
+#ifndef _TPAD_PANGO_FONT_DESCRIPTION_DEFAULT
+#define _TPAD_PANGO_FONT_DESCRIPTION_DEFAULT gettext("DejaVu Sans Mono 12")
+#endif
+#ifndef _HASH_MENU_CB_TO_512
+#define _HASH_MENU_CB_TO_512 gettext("Hash Selection To Clipboard [SHA-512]")
+#endif
+#ifndef _HASH_MENU_CB_TO_256
+#define _HASH_MENU_CB_TO_256 gettext("Hash Selection To Clipboard [SHA-256]")
+#endif
+#ifndef _HASH_MENU_CB_TO_MD5
+#define _HASH_MENU_CB_TO_MD5 gettext("Hash Selection To Clipboard [MD5]")
+#endif
+#ifndef _HASH_MENU
+#define _HASH_MENU gettext("Hash")
+#endif
+#ifndef _FILE_WATCH_DISABLE
+#define _FILE_WATCH_DISABLE gettext("Disable experimental file watching")
+#endif
+#ifndef _HASH_MENU_F_TO_512
+#define _HASH_MENU_F_TO_512 gettext("Hash File To Clipboard [SHA-512]...")
+#endif
+#ifndef _HASH_MENU_F_TO_256
+#define _HASH_MENU_F_TO_256 gettext("Hash File To Clipboard [SHA-256]...")
+#endif
+#ifndef _HASH_MENU_F_TO_MD5
+#define _HASH_MENU_F_TO_MD5 gettext("Hash File To Clipboard [MD5]...")
+#endif
+#ifndef _ENABLE_FILE_WATCH_MESSAGE_HEADER
+#define _ENABLE_FILE_WATCH_MESSAGE_HEADER gettext("Experimental File Watching Toggled")
+#endif
+#ifndef _MENU_CB_TO_BASE_64
+#define _MENU_CB_TO_BASE_64 gettext("Convert Selection To Clipboard [TO BASE 64]")
+#endif
+#ifndef _MENU_F_TO_BASE_64
+#define _MENU_F_TO_BASE_64 gettext("Convert File To Clipboard [TO BASE 64]...")
+#endif
+#ifndef _MENU_CB_FROM_BASE_64
+#define _MENU_CB_FROM_BASE_64 gettext("Convert Selection To Clipboard [FROM BASE 64]")
+#endif
+#ifndef _MENU_F_FROM_BASE_64
+#define _MENU_F_FROM_BASE_64 gettext("Convert File To Clipboard [FROM BASE 64]...")
+#endif
+#ifndef _ENABLE_FILE_WATCH_MESSAGE_BODY
+#define _ENABLE_FILE_WATCH_MESSAGE_BODY gettext("You should save any work and EXIT tpad after enabling or disabling this feature. Failure to do so may result in problems. You have been warned.")
+#endif
+////////////////////////////////////////////////////////////////////////
+//	END OF SECTION THREE.        	
+////////////////////////////////////////////////////////////////////////

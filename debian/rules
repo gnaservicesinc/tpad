@@ -3,11 +3,16 @@
 include /usr/share/cdbs/1/rules/autoreconf.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
+CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS:=$(shell dpkg-buildflags --get CFLAGS) $(CPPFLAGS)
+CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS) $(CPPFLAGS)
+LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 
-CFLAGS = -D_FORTIFY_SOURCE=2 -fstack-protector-all --param=ssp-buffer-size=4 -g -O3 -flto=8 
-CPPFLAGS = -D_FORTIFY_SOURCE=2 -fstack-protector-all --param=ssp-buffer-size=4 -g -O3 -flto=8 
-LDFLAGS = -g -Wl,-flto=8 -Wl,-Bsymbolic-functions -Wl,-O1 -Wl,--as-needed -Wl,-z,relro -Wl,-z,now
+CFLAGS += -fstack-protector-strong --param=ssp-buffer-size=4 -fstack-protector-strong -g -O3
+CXXFLAGS += -fstack-protector-strong --param=ssp-buffer-size=4 -g -O3      
+CPPFLAGS += -D_FORTIFY_SOURCE=2
+LDFLAGS += -Wl,-Bsymbolic-functions -Wl,-O1 -Wl,--as-needed -Wl,-z,relro -Wl,-z,now
 
 DEB_CONFIGURE_MANDIR=/usr/share/man/
-#--enable-libunity
+
 DEB_CONFIGURE_EXTRA_FLAGS = --with-libmagic --docdir=/usr/share/doc/tpad --localstatedir='/var' --sharedstatedir='/var/lib'

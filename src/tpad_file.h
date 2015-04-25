@@ -24,6 +24,7 @@
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
+#include "tpad_headers.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <gtk/gtk.h>
@@ -57,7 +58,6 @@ gchar* getcRpath(void);
 gchar* clean_path(gchar *path);
 gchar* link_resolve(gchar* file);
 gint get_file_type( gchar *file);
- gchar* check_file(gchar *afile);
-gint check_magic(gchar* file);
-gint tpad_magic_test (gchar file_mime_string[], gchar check_mime_string[]);
+gchar* check_file(gchar *afile);
+void tpad_copy_file_name_to_clipboard(GtkWidget *caller);
 #endif

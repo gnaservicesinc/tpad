@@ -69,6 +69,6 @@ void gerror_warn(gchar *c_msg, gchar *extra_information, gboolean slog, gboolean
 	    g_free(msg);
 	    if(abort){
 			new_thread_tpad(NULL);
-			exit(1);
+			force_quit_program();
 		}
 }

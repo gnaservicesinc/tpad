@@ -21,17 +21,19 @@
 #include "tpad_headers.h"
 static GtkSpinButton *xSpinButton,*ySpinButton,*uSpinButton,*stSpingButton;
 
+
 void do_UI_pref_update(GtkWidget *caller, gpointer dialog)
 {
 	cfg_set_default_width(gtk_spin_button_get_value_as_int (xSpinButton));
 	cfg_set_default_height(gtk_spin_button_get_value_as_int (ySpinButton));
 	cfg_set_undo(gtk_spin_button_get_value_as_int (uSpinButton));
-	cfg_set_stack_quantity(gtk_spin_button_get_value_as_int (stSpingButton));		
+	//cfg_set_stack_quantity(gtk_spin_button_get_value_as_int (stSpingButton));		
 	set_language(); 
 	gtk_widget_destroy((GtkWidget*) dialog);
 	cfg_save();
 }
 void show_ui_prefs (){
+
 	GtkWidget *dialog,*mainbox,*buttonbox,*xbox,*ybox,*ubox,*stbox,*buttonAccept; 
 	dialog=gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(dialog),_UI_SETTINGS);
@@ -77,20 +79,15 @@ void show_ui_prefs (){
 	gtk_spin_button_set_value (GTK_SPIN_BUTTON(uSpinButton),(gdouble)cfg_undo()); 
 	gtk_box_pack_start (GTK_BOX (ubox),GTK_WIDGET(uSpinButton),TRUE,TRUE,1);
 
-	gtk_box_pack_start (GTK_BOX (stbox),GTK_WIDGET (gtk_label_new(_QUANTITY_OF_STACKS_HEADING)), TRUE, TRUE, 1); 
-	stSpingButton=(GtkSpinButton*)gtk_spin_button_new_with_range(0,_INT_VAL_MAX,15);
-	gtk_spin_button_set_digits (GTK_SPIN_BUTTON(stSpingButton),0);
-	gtk_spin_button_set_numeric (GTK_SPIN_BUTTON(stSpingButton), TRUE);
-	gtk_spin_button_set_wrap (GTK_SPIN_BUTTON(stSpingButton),TRUE);                      
-	gtk_spin_button_set_value (stSpingButton,(gdouble)cfg_stack_quantity()); 
-	gtk_box_pack_start (GTK_BOX (stbox),GTK_WIDGET(stSpingButton),TRUE,TRUE,1);
+	GtkWidget *pToolbar = (GtkWidget *) gtk_toolbar_new();
+	gtk_toolbar_set_style(GTK_TOOLBAR(pToolbar),GTK_TOOLBAR_ICONS);
+	GtkToolItem* toolApply = (GtkToolItem*) gtk_tool_button_new(NULL,"Apply");
+	gtk_toolbar_insert(GTK_TOOLBAR(pToolbar),GTK_TOOL_ITEM(toolApply),0);
 
-                  
-    	buttonAccept=gtk_button_new_from_stock(GTK_STOCK_APPLY);
 	
-	gtk_box_pack_start (GTK_BOX (buttonbox),GTK_WIDGET (buttonAccept), TRUE, TRUE, 1);
+	gtk_box_pack_start (GTK_BOX (buttonbox),GTK_WIDGET (pToolbar), TRUE, TRUE, 1);
 	
-	g_signal_connect(buttonAccept,"clicked",G_CALLBACK(do_UI_pref_update),(gpointer) dialog); 
+	g_signal_connect(toolApply,"clicked",G_CALLBACK(do_UI_pref_update),(gpointer) dialog); 
 
 	gtk_widget_show_all(dialog);	
 	

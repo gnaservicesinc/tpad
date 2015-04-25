@@ -1,6 +1,6 @@
 /********************************************************************************* 
  *     COPYRIGHT NOTICE:
- *     Copyright © 2013 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
+ *     Copyright © 2014 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
  *     All Rights Reserved.
  *
  *   This file, tpad_doc.h , is part of tpad.
@@ -31,12 +31,16 @@
 #ifndef _METHOD_MAX
 #define _METHOD_MAX 2
 #endif
+#ifndef _METHOD_HEX
+#define _METHOD_HEX 3
+#endif
 #ifndef _TPAD_DOC_
 #define _TPAD_DOC_
 
 #include "include.h"
-void mod_doc(int method);
+gint mod_doc(int method);
 void low_caps_document();
 void up_caps_document();
 void rev_document();
+void hex_document();
 #endif

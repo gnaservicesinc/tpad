@@ -27,4 +27,5 @@
 gint save_modified();
 void save_as();
 void save_file();
+gint save_watched();
 #endif

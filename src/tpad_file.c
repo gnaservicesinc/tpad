@@ -21,8 +21,25 @@
  ********************************************************************************/
 
 #include "tpad_headers.h"
+extern GtkWidget *window;
+extern gboolean save_locked;
+extern char* tpad_fp;
+extern int tpad_fp_state;
+
 
 static gchar *cRpath=NULL;
+
+void tpad_copy_file_name_to_clipboard(GtkWidget *caller){
+	static char* cFile;
+	cFile = (char*) g_strdup(tpad_fp_get_current());
+	if (cFile != NULL){ 
+		//fprintf(stdout,"Current File = %s\n",cFile);
+ 	gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD),cFile ,strlen(cFile));
+	gtk_clipboard_store (gtk_clipboard_get(GDK_SELECTION_CLIPBOARD));
+	
+	}
+ 
+}
 
 gchar *clean_path(gchar *path){
 	GError *error = NULL;
@@ -30,7 +47,7 @@ gchar *clean_path(gchar *path){
 	gchar *bwords=NULL;
 	bwords=path;
 	gint bwordsize=str_size(bwords);
-	if (bwordsize >= (gint)1)
+	if (bwordsize >= (gint)0)
 		{
 		buf_word=g_strdup(g_convert(bwords, (gint) -1, (gchar*)"UTF-8", g_get_codeset(),NULL, NULL, &error));	
 		if (error != NULL) 
@@ -131,45 +148,4 @@ switch(get_file_type(file))
 
 	}
 	
-}
-
-int check_magic(gchar* file) {
-		#ifdef HAVE_LIBMAGIC
-		int ret =0;
-		char *actual_file = (char*) file;
-		const char *magic_full;
-		magic_t magic_cookie;
-		magic_cookie = magic_open(MAGIC_MIME); 
-	if (magic_cookie == NULL) {
-;
-	        return(2);
-		    }
-	if (magic_load(magic_cookie, NULL) != 0) {
-	     //   printf("cannot load magic database - %s\n", magic_error(magic_cookie));
-	        magic_close(magic_cookie);
-	        return(3);
-	    }
-	magic_full = magic_file(magic_cookie, actual_file);
-	char* magic_string= (char*) magic_full;
-
-	if(tpad_magic_test(magic_string,"text") == 0) ret =1;
-	else ret =0;
-	return(ret);
-#endif
-	#ifndef HAVE_LIBMAGIC
-	return(1);
-#endif
-}
-
-gint tpad_magic_test (gchar file_mime_string[], gchar check_mime_string[]){
-	#ifdef HAVE_LIBMAGIC
-	unsigned int slen=strlen(check_mime_string);
-	gchar beg_string[slen];
-	strncpy ( beg_string, file_mime_string, (int)slen );
-	if(strncmp(beg_string,check_mime_string,slen) == 0) return(0);
-	else return(1);
-#endif
-#ifndef HAVE_LIBMAGIC
-	return(1);
-#endif
 }

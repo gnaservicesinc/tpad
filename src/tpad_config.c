@@ -1,6 +1,6 @@
 /********************************************************************************* 
  *     COPYRIGHT NOTICE:
- *     Copyright © 2013 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
+ *     Copyright © 2013, 2014 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
  *     All Rights Reserved.
  *
  *   This file, tpad_config.c , is part of tpad.
@@ -54,6 +54,14 @@ int cfg_lang(){
 int cfg_line(){
 	cfg_check((gchar*)__func__);
 	return(userCfg.show_line_numbers);
+}
+char *cfg_id(){
+	cfg_check((gchar*)__func__);
+	char* cuid_string = (char*) calloc( 1024, sizeof( char ) );
+	if (cuid_string == NULL) exit(1);
+
+	uuid_unparse(userCfg.configID,cuid_string); 
+	return(cuid_string);
 }
 int cfg_spell(){
 	cfg_check((gchar*)__func__);
@@ -211,6 +219,7 @@ void set_conf_defaults(){
 	userCfg.show_full_path=1;
 	userCfg.screenWidth=0;
 	userCfg.screenHeight=0;
+	uuid_generate(userCfg.configID);
 	#ifdef AUTO_TAB_TOGGLE
 	userCfg.auto_tab=0;
 	userCfg.useStacks=TRUE;

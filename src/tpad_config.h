@@ -1,6 +1,6 @@
 /********************************************************************************* 
  *     COPYRIGHT NOTICE:
- *     Copyright © 2013 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
+ *     Copyright © 2013, 2014 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
  *     All Rights Reserved.
  *
  *   This file, tpad_config.h , is part of tpad.
@@ -40,7 +40,7 @@
 #include <pthread.h>
 #include <math.h>
 #include <glib/gi18n.h>
-
+#include <uuid/uuid.h>
 
 typedef struct {
   int show_line_numbers;
@@ -59,6 +59,7 @@ typedef struct {
   int useStacks;
   int StacksTotalQuantity;
   int useOpenGuard;
+  uuid_t configID;
 } cfgSet;
 
 #ifdef AUTO_TAB_TOGGLE
@@ -90,6 +91,7 @@ int cfg_spell();
 int cfg_sWidth();
 int cfg_sHeight();
 int cfg_wWidth();
+char *cfg_id();
 int cfg_wHeight();
 int cfg_undo();
 int cfg_gaveUp();

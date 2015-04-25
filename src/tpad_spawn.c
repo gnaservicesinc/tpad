@@ -1,6 +1,6 @@
 /********************************************************************************* 
  *     COPYRIGHT NOTICE:
- *     Copyright © 2013 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
+ *     Copyright © 2013, 2014 Andrew Smith (GNA SERVICES INC) <Andrew@GNAServicesInc.com>
  *     All Rights Reserved.
  *
  *   This file, tpad_spawn.c , is part of tpad.
@@ -22,7 +22,9 @@
 #include "tpad_headers.h"
 
 static gchar* path_self=NULL;
-
+void runn(){
+	new_thread_tpad(NULL);
+}
 void set_path_self_cleanup() {
 	path_self=NULL;
 }

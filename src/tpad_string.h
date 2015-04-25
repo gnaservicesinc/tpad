@@ -24,4 +24,6 @@
 int str_size(char* string);
 gboolean is_separator (gchar cChar);
 gint gtk_text_buffer_get_word_count (GtkTextBuffer *buffer);
+void clear_char_array(gchar first[], ...);
+void clear_uchar_array(unsigned char* first, ...);
 #endif
